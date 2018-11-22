@@ -2,7 +2,7 @@
 -- License information can be found on LICENSE file
 
 function love.conf(t)
-	t.version = "0.10.2"
+	t.version = "11.1"
 	-----------------------------------
 	t.window.title = "ALIENS VS MACHINE"
 	t.window.width = 480

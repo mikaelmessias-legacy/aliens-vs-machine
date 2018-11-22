@@ -75,16 +75,16 @@ function love.load(arg)
 
     -- Loads sound effects
     sfx = {
-        shoot = love.audio.newSource("assets/audio/shoots.wav"),
-        playerHit = love.audio.newSource("assets/audio/playerHit.wav"),
-        enemyHit = love.audio.newSource("assets/audio/enemyHit.wav"),
-        lifeUp = love.audio.newSource("assets/audio/lifeUp.wav")
+        shoot = love.audio.newSource("assets/audio/shoots.wav", "static"),
+        playerHit = love.audio.newSource("assets/audio/playerHit.wav", "static"),
+        enemyHit = love.audio.newSource("assets/audio/enemyHit.wav", "static"),
+        lifeUp = love.audio.newSource("assets/audio/lifeUp.wav", "static")
     }
 
     -- Loads music themes
     music = {
-        theme = love.audio.newSource("assets/audio/royal_entrance.mp3"),
-        gameOver = love.audio.newSource("assets/audio/jingle-lose.wav")
+        theme = love.audio.newSource("assets/audio/royal_entrance.mp3", "static"),
+        gameOver = love.audio.newSource("assets/audio/jingle-lose.wav", "static")
     }
 
     music.theme:setLooping(true)
@@ -166,7 +166,7 @@ function love.update(dt)
         end
     
         -- Deals with events related to the fire button
-        if love.keyboard.isDown('space', 'rctrl', 'lctrl', 'ctrl') and canShoot then
+        if love.keyboard.isDown('space', 'rctrl', 'lctrl') and canShoot then
             newLeftBullet = {
                 x = player.x + (player.img:getWidth()/2-28), 
                 y = player.y, 
@@ -365,8 +365,6 @@ end
 -- Receives a source object, does the default routine and plays the effect.
     -- sound: the source object.
 function playSoundEffect(sound)
-    -- Rewind is required specially when a source is used more than once.
-    sound:rewind(sound)
     -- Generate a pitchMod value (sound frequency) between 0.8 and 1.2.
     pitchMod = 0.6 + love.math.random(0, 10)/25
     -- Set the pitchMod and play the sound effect.
